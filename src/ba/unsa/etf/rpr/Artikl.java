@@ -1,6 +1,8 @@
 package ba.unsa.etf.rpr;
 
 
+import java.util.Objects;
+
 public class Artikl {
     private String naziv;
     private int cijena;
@@ -23,5 +25,20 @@ public class Artikl {
 
     public String getKod(){
         return kod;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Artikl artikl = (Artikl) o;
+        return cijena == artikl.cijena &&
+                Objects.equals(naziv, artikl.naziv) &&
+                Objects.equals(kod, artikl.kod);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(naziv, cijena, kod);
     }
 }
